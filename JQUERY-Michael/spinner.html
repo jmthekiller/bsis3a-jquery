@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Widgets</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="./jquery-ui-1.14.1.custom/jquery-ui.css">
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+
+            // Initialize spinner and map functionality
+            function latlong() {
+                return new google.maps.LatLng($("#lat").val(), $("#lng").val());
+            }
+            function position() {
+                map.setCenter(latlong());
+            }
+            $("#lat, #lng").spinner({
+                step: .001,
+                change: position,
+                stop: position
+            });
+
+            var map = new google.maps.Map($("#map")[0], {
+                zoom: 8,
+                center: latlong(),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+        });
+    </script>
+    <style>
+        #map {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+    <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>JQUERY - Michael Recana</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Widgets</h2>
+            <ul class="navigation">
+                <li><a href="accordion.html">Accordion</a></li>
+                <li><a href="autocomplete.html">Autocomplete</a></li>
+                <li><a href="button.html">Button</a></li>
+                <li><a href="checkboxradio.html">Checkboxradio</a></li>
+                <li><a href="controlgroup.html">Controlgroup</a></li>
+                <li><a href="datepicker.html">Datepicker</a></li>
+                <li><a href="dialog.html">Dialog</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="progressbar.html">Progressbar</a></li>
+                <li><a href="selectmenu.html">Selectmenu</a></li>
+                <li><a href="slider.html">Slider</a></li>
+                <li><a href="spinner.html">Spinner</a></li>
+                <li><a href="tabs.html">Tabs</a></li>
+                <li><a href="tooltip.html">Tooltip</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>SPINNER</h1>
+            <p>Enhance a text input for entering numeric values, with up/down buttons and arrow key handling.</p>
+            
+            <!-- Latitude and Longitude Inputs -->
+            <label for="lat">Latitude</label>
+            <input id="lat" name="lat" value="44.797">
+            <br>
+            <label for="lng">Longitude</label>
+            <input id="lng" name="lng" value="-93.278">
+            
+            <div id="map"></div>
+        </main>
+    </div>
+    
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

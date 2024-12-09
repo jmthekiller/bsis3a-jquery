@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Widgets</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="./jquery-ui-1.14.1.custom/jquery-ui.css">
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+
+            // Selectmenu for Circle Customization
+            var circle = $("#circle");
+
+            $("#radius").selectmenu({
+                change: function(event, data) {
+                    circle.css({
+                        width: data.item.value + 'px',
+                        height: data.item.value + 'px'
+                    });
+                }
+            });
+
+            $("#color").selectmenu({
+                change: function(event, data) {
+                    circle.css("background", data.item.value);
+                }
+            });
+        });
+    </script>
+    <style>
+        fieldset {
+            border: 0;
+            margin-left: 300px;
+        }
+        label {
+            display: block;
+            margin: 20px 0 0 0;
+        }
+        #circle {
+            float: left;
+            background: yellow;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>JQUERY - Michael Recana</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Widgets</h2>
+            <ul class="navigation">
+                <li><a href="accordion.html">Accordion</a></li>
+                <li><a href="autocomplete.html">Autocomplete</a></li>
+                <li><a href="button.html">Button</a></li>
+                <li><a href="checkboxradio.html">Checkboxradio</a></li>
+                <li><a href="controlgroup.html">Controlgroup</a></li>
+                <li><a href="datepicker.html">Datepicker</a></li>
+                <li><a href="dialog.html">Dialog</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="progressbar.html">Progressbar</a></li>
+                <li><a href="selectmenu.html">Selectmenu</a></li>
+                <li><a href="slider.html">Slider</a></li>
+                <li><a href="spinner.html">Spinner</a></li>
+                <li><a href="tabs.html">Tabs</a></li>
+                <li><a href="tooltip.html">Tooltip</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>SELECTMENU</h1>
+            <p>Duplicates and extends the functionality of a native HTML select element to overcome the limitations of the native control.</p>
+            <div id="accordion">
+                <h3>Circle Customization</h3>
+                <div>
+                    <div id="circle"></div>
+                    <fieldset>
+                        <label for="radius">Circle radius</label>
+                        <select name="radius" id="radius">
+                            <option value="50">50px</option>
+                            <option value="100">100px</option>
+                            <option value="150" selected="selected">150px</option>
+                            <option value="200">200px</option>
+                            <option value="250">250px</option>
+                        </select>
+
+                        <label for="color">Circle color</label>
+                        <select name="color" id="color">
+                            <option value="black">Black</option>
+                            <option value="red">Red</option>
+                            <option value="yellow" selected="selected">Yellow</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                        </select>
+                    </fieldset>
+                </div>                
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

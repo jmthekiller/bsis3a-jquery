@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Widgets</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="./jquery-ui-1.14.1.custom/jquery-ui.css">   
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <style>
+        /* Custom styles for the tooltip */
+        label {
+            display: inline-block; 
+            width: 5em;
+        }
+        fieldset div {
+            margin-bottom: 2em;
+        }
+        fieldset .help {
+            display: inline-block;
+        }
+        .ui-tooltip {
+            width: 210px;
+        }
+    </style>
+    <script>
+        $(function() {
+            // Initialize the accordion
+            $("#accordion").accordion({
+                collapsible: true
+            });
+
+            // Initialize tooltips for form fields
+            var tooltips = $("[title]").tooltip({
+                position: {
+                    my: "left top",
+                    at: "right+5 top-5",
+                    collision: "none"
+                }
+            });
+
+            // Button to show tooltips
+            $("<button>")
+                .text("Show help")
+                .button()
+                .on("click", function() {
+                    tooltips.tooltip("open");
+                })
+                .insertAfter("form");
+        });
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>JQUERY - Michael Recana</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Widgets</h2>
+            <ul class="navigation">
+                <li><a href="accordion.html">Accordion</a></li>
+                <li><a href="autocomplete.html">Autocomplete</a></li>
+                <li><a href="button.html">Button</a></li>
+                <li><a href="checkboxradio.html">Checkboxradio</a></li>
+                <li><a href="controlgroup.html">Controlgroup</a></li>
+                <li><a href="datepicker.html">Datepicker</a></li>
+                <li><a href="dialog.html">Dialog</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="progressbar.html">Progressbar</a></li>
+                <li><a href="selectmenu.html">Selectmenu</a></li>
+                <li><a href="slider.html">Slider</a></li>
+                <li><a href="spinner.html">Spinner</a></li>
+                <li><a href="tabs.html">Tabs</a></li>
+                <li><a href="tooltip.html">Tooltip</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>TOOLTIP</h1>
+            <p>Customizable, themeable tooltips, replacing native tooltips.</p>
+            
+            <!-- Form with Tooltips -->
+            <form>
+                <fieldset>
+                    <div>
+                        <label for="firstname">Firstname</label>
+                        <input id="firstname" name="firstname" title="Please provide your firstname.">
+                    </div>
+                    <div>
+                        <label for="lastname">Lastname</label>
+                        <input id="lastname" name="lastname" title="Please provide also your lastname.">
+                    </div>
+                    <div>
+                        <label for="address">Address</label>
+                        <input id="address" name="address" title="Your home or work address.">
+                    </div>
+                </fieldset>
+            </form>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

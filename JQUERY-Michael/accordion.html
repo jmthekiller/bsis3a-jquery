@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Widgets</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="./jquery-ui-1.14.1.custom/jquery-ui.css">    
+    <script src="js/jquery-3.7.1.min.js"></script> <!-- Load jQuery first -->
+    <script src="js/jquery-ui.min.js"></script> <!-- Then load jQuery UI -->
+    <script>
+        $(function() {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+
+            // Prevent default action for sidebar links if needed
+            $('.navigation li a').on('click', function(event) {
+                // Uncomment the line below if you want to prevent navigation
+                // event.preventDefault();
+                // Logic for popups or other interactions can go here
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>JQUERY - Michael Recana</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Widgets</h2>
+            <ul class="navigation">
+                <li><a href="accordion.html">Accordion</a></li>
+                <li><a href="autocomplete.html">Autocomplete</a></li>
+                <li><a href="button.html">Button</a></li>
+                <li><a href="checkboxradio.html">Checkboxradio</a></li>
+                <li><a href="controlgroup.html">Controlgroup</a></li>
+                <li><a href="datepicker.html">Datepicker</a></li>
+                <li><a href="dialog.html">Dialog</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="progressbar.html">Progressbar</a></li>
+                <li><a href="selectmenu.html">Selectmenu</a></li>
+                <li><a href="slider.html">Slider</a></li>
+                <li><a href="spinner.html">Spinner</a></li>
+                <li><a href="tabs.html">Tabs</a></li>
+                <li><a href="tooltip.html">Tooltip</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>ACCORDION</h1>
+            <p>Displays collapsible content panels for presenting information in a limited amount of space.</p>
+            <div id="accordion">
+                <h3>Section 1</h3>
+                <div>
+                    <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget.</p>
+                </div>
+                <h3>Section 2</h3>
+                <div>
+                    <p>Section 2 content here.</p>
+                </div>
+                <h3>Section 3</h3>
+                <div>
+                    <p>Section 3 content here.</p>
+                </div>
+                <h3>Section 4</h3>
+                <div>
+                    <p>Section 4 content here.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/script.js"></script> <!-- Your custom script can be at the bottom -->
+</body>
+</html>

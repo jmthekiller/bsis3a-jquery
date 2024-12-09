@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - XML data parsed once</title>
+  <link rel="stylesheet" href="css/style.css"> 
+  <link rel="stylesheet" href="./jquery-ui-1.14.1.custom/jquery-ui.css"> 
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/jquery-3.7.1.js"></script>
+  <style>
+    .ui-autocomplete-loading {
+      background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+    }
+    .ui-widget {
+      margin: 20px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+    #birds {
+      width: 100%; /* Make input field responsive */
+      max-width: 400px; /* Set a max-width for larger screens */
+      padding: 8px; /* Add padding for better touch target */
+      font-size: 16px; /* Adjust font size */
+    }
+    #log {
+      height: 200px;
+      width: 100%; /* Make result log responsive */
+      max-width: 400px; /* Set a max-width for larger screens */
+      overflow: auto;
+      margin-top: 10px;
+      background-color: #f9f9f9; /* Light background color */
+      border: 1px solid #ccc; /* Border around log */
+      padding: 10px; /* Padding inside log */
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <script>
+    $(function() {
+      function log(message) {
+        $("<div/>").text(message).prependTo("#log");
+        $("#log").attr("scrollTop", 0);
+      }
+
+      $.ajax({
+        url: "london.xml", // Ensure this path is correct for your server
+        dataType: "xml",
+        success: function(xmlResponse) {
+          var data = $("geoname", xmlResponse).map(function() {
+            return {
+              value: $("name", this).text() + ", " +
+                (String.prototype.trim.call($("countryName", this).text()) ||
+                  "(unknown country)"),
+              id: $("geonameId", this).text()
+            };
+          }).get();
+          $("#birds").autocomplete({
+            source: data,
+            minLength: 0,
+            select: function(event, ui) {
+              log(ui.item ?
+                "Selected: " + ui.item.value + ", geonameId: " + ui.item.id :
+                "Nothing selected, input was " + this.value);
+            }
+          });
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>JQUERY - Michael Recana</h1>
+  </header>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Widgets</h2>
+      <ul class="navigation">
+        <li><a href="accordion.html">Accordion</a></li>
+        <li><a href="autocomplete.html">Autocomplete</a></li>
+        <li><a href="button.html">Button</a></li>
+        <li><a href="checkboxradio.html">Checkboxradio</a></li>
+        <li><a href="controlgroup.html">Controlgroup</a></li>
+        <li><a href="datepicker.html">Datepicker</a></li>
+        <li><a href="dialog.html">Dialog</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="progressbar.html">Progressbar</a></li>
+        <li><a href="selectmenu.html">Selectmenu</a></li>
+        <li><a href="slider.html">Slider</a></li>
+        <li><a href="spinner.html">Spinner</a></li>
+        <li><a href="tabs.html">Tabs</a></li>
+        <li><a href="tooltip.html">Tooltip</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <h1>AUTOCOMPLETE</h1>
+      <p>Enables users to quickly find and select from a pre-populated list of values as they type, leveraging searching and filtering.</p>
+      
+      <!-- Autocomplete Section -->
+      <div class="ui-widget">
+        <label for="birds">London matches: </label>
+        <input id="birds" placeholder="Start typing...">
+      </div>
+
+      <div class="ui-widget" style="margin-top: 2em;">
+        Result:
+        <div id="log" class="ui-widget-content"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

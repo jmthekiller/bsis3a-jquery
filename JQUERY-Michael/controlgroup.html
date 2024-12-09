@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Widgets</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="./jquery-ui-1.14.1.custom/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">  
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            // Initialize the accordion
+            $("#accordion").accordion({
+                collapsible: true
+            });
+
+            // Initialize the toolbar for Controlgroup
+            var page = $("#page");
+            var basicControls = ["#print", "#bold", "#italic", "#undo", "#redo"];
+            var valueControls = ["#fontsize", "#forecolor", "#hilitecolor", "#backcolor", "#fontname"];
+
+            $("#print").button({
+                "icon": "ui-icon-print",
+                "showLabel": false
+            });
+            $("#redo").button({
+                "icon": "ui-icon-arrowreturnthick-1-e",
+                "showLabel": false
+            });
+            $("#undo").button({
+                "icon": "ui-icon-arrowreturnthick-1-w",
+                "showLabel": false
+            });
+
+            $(".toolbar").controlgroup();
+
+            $("#zoom").on("selectmenuchange", function() {
+                page.css({ "zoom": $(this).val() });
+            });
+
+            $(basicControls.concat(valueControls).join(", ")).on("click change selectmenuchange", function() {
+                document.execCommand(this.id, false, $(this).val());
+            });
+
+            $("form").on("submit", function(event) {
+                event.preventDefault();
+            });
+
+            // Initialize split button
+            $("select").selectmenu({
+                classes: {
+                    "ui-selectmenu-button": "ui-button-icon-only demo-splitbutton-select"
+                },
+                change: function(){
+                    $(".output").append("<li>" + this.value + "</li>");
+                }
+            });
+            $(".controlgroup").controlgroup();
+            $("button.run-last-action").on("click", function() {
+                $(".output").append("<li>Running Last Action...</li>");
+            });
+        });
+    </script>
+    <style>
+        #zoom-button {
+            width: 55px;
+        }
+        #fontname-button,
+        #fontsize-button {
+            width: 45px;
+        }
+        #forecolor-button {
+            width: 50px;
+        }
+        #hilitecolor-button {
+            width: 70px;
+        }
+        #bold {
+            font-weight: bold;
+        }
+        #italic {
+            font-style: italic;
+        }
+        #underline {
+            text-decoration: underline;
+        }
+        .toolbar {
+            font-size: .75em;
+        }
+        #page {
+            width: 440px;
+            left: 50%;
+            position: relative;
+            margin-left: -226px;
+            height: 450px;
+            border: 1px solid #888;
+            box-shadow: 7px 7px 3px #ccc;
+            font-size: 11px;
+            font-family: "Lucida Grande";
+            zoom: 100%;
+            padding: 5px;
+            white-space: pre-line;
+            overflow: scroll;
+        }
+        .wrap {
+            width: 588px;
+        }
+        .ui-button-icon-only.demo-splitbutton-select {
+            width: 1em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>JQUERY - Michael Recana</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Widgets</h2>
+            <ul class="navigation">
+                <li><a href="accordion.html">Accordion</a></li>
+                <li><a href="autocomplete.html">Autocomplete</a></li>
+                <li><a href="button.html">Button</a></li>
+                <li><a href="checkboxradio.html">Checkboxradio</a></li>
+                <li><a href="controlgroup.html">Controlgroup</a></li>
+                <li><a href="datepicker.html">Datepicker</a></li>
+                <li><a href="dialog.html">Dialog</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="progressbar.html">Progressbar</a></li>
+                <li><a href="selectmenu.html">Selectmenu</a></li>
+                <li><a href="slider.html">Slider</a></li>
+                <li><a href="spinner.html">Spinner</a></li>
+                <li><a href="tabs.html">Tabs</a></li>
+                <li><a href="tooltip.html">Tooltip</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>CONTROLGROUP</h1>
+            <p>Groups multiple buttons and other widgets into one visual set.</p>
+            
+            
+                
+
+                <!-- Split Button Section -->
+                <h2>Split Button</h2>
+                <div class="controlgroup">
+                    <button class="run-last-action">Run last option</button>
+                    <select>
+                        <option>Open...</option>
+                        <option>Save</option>
+                        <option>Delete</option>
+                    </select>
+                </div>
+                <br>
+                <h3>Output:</h3>
+                <ul class="output"></ul>
+            </div>
+        </main>
+    </div>
+    
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

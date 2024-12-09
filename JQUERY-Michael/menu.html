@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Widgets</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="./jquery-ui-1.14.1.custom/jquery-ui.css">   
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+
+            $("#menu").menu(); // Initialize the menu
+        });
+    </script>
+    <style>
+        .ui-menu { width: 150px; } /* Custom style for the menu */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>JQUERY - Michael Recana</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Widgets</h2>
+            <ul class="navigation">
+                <li><a href="accordion.html">Accordion</a></li>
+                <li><a href="autocomplete.html">Autocomplete</a></li>
+                <li><a href="button.html">Button</a></li>
+                <li><a href="checkboxradio.html">Checkboxradio</a></li>
+                <li><a href="controlgroup.html">Controlgroup</a></li>
+                <li><a href="datepicker.html">Datepicker</a></li>
+                <li><a href="dialog.html">Dialog</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="progressbar.html">Progressbar</a></li>
+                <li><a href="selectmenu.html">Selectmenu</a></li>
+                <li><a href="slider.html">Slider</a></li>
+                <li><a href="spinner.html">Spinner</a></li>
+                <li><a href="tabs.html">Tabs</a></li>
+                <li><a href="tooltip.html">Tooltip</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>MENU</h1>
+            <p>Themeable menu with mouse and keyboard interactions for navigation.</p>
+            
+            <!-- Menu Implementation -->
+            <h2>Product Categories</h2>
+            <ul id="menu">
+                <li class="ui-state-disabled"><div>Toys (n/a)</div></li>
+                <li><div>Books</div></li>
+                <li><div>Clothing</div></li>
+                <li><div>Electronics</div>
+                    <ul>
+                        <li class="ui-state-disabled"><div>Home Entertainment</div></li>
+                        <li><div>Car Hifi</div></li>
+                        <li><div>Utilities</div></li>
+                    </ul>
+                </li>
+                <li><div>Movies</div></li>
+                <li><div>Music</div>
+                    <ul>
+                        <li><div>Rock</div>
+                            <ul>
+                                <li><div>Alternative</div></li>
+                                <li><div>Classic</div></li>
+                            </ul>
+                        </li>
+                        <li><div>Jazz</div>
+                            <ul>
+                                <li><div>Freejazz</div></li>
+                                <li><div>Big Band</div></li>
+                                <li><div>Modern</div></li>
+                            </ul>
+                        </li>
+                        <li><div>Pop</div></li>
+                    </ul>
+                </li>
+                <li class="ui-state-disabled"><div>Specials (n/a)</div></li>
+            </ul>
+        </main>
+    </div>
+    
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

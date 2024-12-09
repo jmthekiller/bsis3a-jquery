@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Widgets</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="./jquery-ui-1.14.1.custom/jquery-ui.css">
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+
+            // Progress bar functionality
+            var progressTimer,
+                progressbar = $("#progressbar"),
+                progressLabel = $(".progress-label"),
+                dialogButtons = [{
+                    text: "Cancel Download",
+                    click: closeDownload
+                }],
+                dialog = $("#dialog").dialog({
+                    autoOpen: false,
+                    closeOnEscape: false,
+                    resizable: false,
+                    buttons: dialogButtons,
+                    open: function() {
+                        progressTimer = setTimeout(progress, 2000);
+                    },
+                    beforeClose: function() {
+                        downloadButton.button("option", {
+                            disabled: false,
+                            label: "Start Download"
+                        });
+                    }
+                }),
+                downloadButton = $("#downloadButton")
+                    .button()
+                    .on("click", function() {
+                        $(this).button("option", {
+                            disabled: true,
+                            label: "Downloading..."
+                        });
+                        dialog.dialog("open");
+                    });
+
+            progressbar.progressbar({
+                value: false,
+                change: function() {
+                    progressLabel.text("Current Progress: " + progressbar.progressbar("value") + "%");
+                },
+                complete: function() {
+                    progressLabel.text("Complete!");
+                    dialog.dialog("option", "buttons", [{
+                        text: "Close",
+                        click: closeDownload
+                    }]);
+                    $(".ui-dialog button").last().trigger("focus");
+                }
+            });
+
+            function progress() {
+                var val = progressbar.progressbar("value") || 0;
+
+                progressbar.progressbar("value", val + Math.floor(Math.random() * 3));
+
+                if (val <= 99) {
+                    progressTimer = setTimeout(progress, 50);
+                }
+            }
+
+            function closeDownload() {
+                clearTimeout(progressTimer);
+                dialog
+                    .dialog("option", "buttons", dialogButtons)
+                    .dialog("close");
+                progressbar.progressbar("value", false);
+                progressLabel.text("Starting download...");
+                downloadButton.trigger("focus");
+            }
+        });
+    </script>
+    <style>
+        #progressbar {
+            margin-top: 20px;
+        }
+
+        .progress-label {
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #fff;
+        }
+
+        .ui-dialog-titlebar-close {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>JQUERY - Michael Recana</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Widgets</h2>
+            <ul class="navigation">
+                <li><a href="accordion.html">Accordion</a></li>
+                <li><a href="autocomplete.html">Autocomplete</a></li>
+                <li><a href="button.html">Button</a></li>
+                <li><a href="checkboxradio.html">Checkboxradio</a></li>
+                <li><a href="controlgroup.html">Controlgroup</a></li>
+                <li><a href="datepicker.html">Datepicker</a></li>
+                <li><a href="dialog.html">Dialog</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="progressbar.html">Progressbar</a></li>
+                <li><a href="selectmenu.html">Selectmenu</a></li>
+                <li><a href="slider.html">Slider</a></li>
+                <li><a href="spinner.html">Spinner</a></li>
+                <li><a href="tabs.html">Tabs</a></li>
+                <li><a href="tooltip.html">Tooltip</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1>PROGRESSBAR</h1>
+            <p>Display status of a determinate or indeterminate process.</p>
+            <button id="downloadButton">Start Download</button>
+            <div id="dialog" title="File Download">
+                <div class="progress-label">Starting download...</div>
+                <div id="progressbar"></div>
+            </div>            
+        </main>
+    </div>
+    
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
